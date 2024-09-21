@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PastryController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 
 // admin-auth.php
 Route::prefix('admin')->middleware('guest:admin')->group(function () {
