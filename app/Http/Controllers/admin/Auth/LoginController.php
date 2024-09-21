@@ -14,10 +14,16 @@ class LoginController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
-    {
-        return view('admin.auth.login');
+    public function create(): mixed
+{
+    // Cek apakah user biasa sudah login
+    if (Auth::check()) {
+        return redirect()->route('dashboard');
     }
+
+    return view('admin.auth.login');
+}
+
 
     /**
      * Handle an incoming authentication request.
@@ -28,7 +34,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('/admin/dashboard', absolute: false));
+        return redirect()->intended(route('admin.dashboard', absolute: false));
     }
 
     /**

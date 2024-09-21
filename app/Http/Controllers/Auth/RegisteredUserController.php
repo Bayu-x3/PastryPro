@@ -17,8 +17,19 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
+        // Cek apakah user biasa sudah login
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
+
+        // Cek apakah admin sudah login, redirect ke dashboard admin
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        // Tampilkan halaman registrasi user
         return view('auth.register');
     }
 
