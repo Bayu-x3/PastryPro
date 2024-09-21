@@ -9,15 +9,24 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    @if (Auth::guard('admin')->check())
-                        <x-nav-link :href="route('admin.pastry.index')" :active="request()->routeIs('admin.pastry.index')">
-                            {{ __('Pastry') }}
-                        </x-nav-link>
-                    @else
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        @if (Auth::guard('admin')->check())
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                    @endif
+                            <x-nav-link :href="route('admin.pastry.index')" :active="request()->routeIs('admin.pastry.index')">
+                                {{ __('Pastry') }}
+                            </x-nav-link>
+                        @else
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('cart.view')" :active="request()->routeIs('cart.view')">
+                                {{ __('Keranjang') }}
+                            </x-nav-link>
+                        @endif
+                    </div>
+                    
                 </div>
             </div>
 
@@ -64,18 +73,24 @@
 
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            @if (Auth::guard('admin')->check())
-                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                    {{ __('Admin Dashboard') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.pastry.index')" :active="request()->routeIs('admin.pastry.index')">
-                    {{ __('Menu Pastry') }}
-                </x-responsive-nav-link>
-            @else
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                @if (Auth::guard('admin')->check())
+                <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                     {{ __('Dashboard') }}
-                </x-responsive-nav-link>
-            @endif
+                </x-nav-link>
+                    <x-nav-link :href="route('admin.pastry.index')" :active="request()->routeIs('admin.pastry.index')">
+                        {{ __('Pastry') }}
+                    </x-nav-link>
+                @else
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('cart.view')" :active="request()->routeIs('cart.view')">
+                        {{ __('Keranjang') }}
+                    </x-nav-link>
+                @endif
+            </div>
+            
         </div>
 
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
