@@ -9,7 +9,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -28,7 +27,6 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-
 Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::get('pastry', [PastryController::class, 'index'])->name('admin.pastry.index');
     Route::get('pastry/create', [PastryController::class, 'create'])->name('admin.pastry.create');
@@ -37,9 +35,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function() {
     Route::put('pastry/{id}', [PastryController::class, 'update'])->name('admin.pastry.update');
     Route::delete('pastry/{id}', [PastryController::class, 'destroy'])->name('admin.pastry.destroy');
 });
-
-
-
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin-auth.php';
